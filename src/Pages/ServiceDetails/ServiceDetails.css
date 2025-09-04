@@ -1,0 +1,7 @@
+.custom-rectangle {
+    width: 300px;
+    height: 200px;
+    background-color: lightcoral;
+    border-top-left-radius: 4000px;   /* উপরের বাঁ দিক */
+    border-top-right-radius: 4000px;  /* উপরের ডান দিক */
+  }
