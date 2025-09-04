@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "car-doctor-project-a7bac",
+    "firebase deploy": "car-doctor-server-project"
+  },
+  "targets": {},
+  "etags": {}
+}
