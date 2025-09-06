@@ -82,7 +82,7 @@ const Navbar = () => {
         </ul>
       </div>
       {loading ? (
-        <span className="loading loading-dots loading-xl"></span>
+        <span className="loading loading-dots loading-xl text-[#FF3811]"></span>
       ) : user ? (
         <>
           {" "}
@@ -194,7 +194,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end space-x-3">
         {loading ? (
-          <span className="loading loading-dots loading-xl"></span>
+          <span className="loading loading-dots loading-xl text-[#FF3811]"></span>
         ) : user ? (
           <div>
             <img src={user.photoURL} alt="" className="rounded-full w-10" />

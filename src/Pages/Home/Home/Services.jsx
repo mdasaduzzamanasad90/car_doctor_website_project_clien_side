@@ -27,7 +27,7 @@ const Services = () => {
         </div>
       </FadeReveal>
       {/* service item */}
-      <div className="grid lg:grid-cols-3 grid-cols-1 gap-7 my-20 h-[800px] w-full">
+      <div className="grid lg:grid-cols-3 grid-cols-1 gap-7 my-20 w-full">
         {services.map((service) => (
           <ServiceItem key={service._id} service={service}></ServiceItem>
         ))}
