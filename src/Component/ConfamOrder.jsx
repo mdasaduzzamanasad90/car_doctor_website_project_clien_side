@@ -1,19 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Authcontex } from "../Provider/AuthProvider";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Reveal from "../Animation/Reveal";
-import swal from 'sweetalert';
-
+import Swal from "sweetalert2";
 const ConfamOrder = () => {
+  const [loading, setloading] = useState(true);
   const { user } = useContext(Authcontex);
   const orderconfirmdata = useLoaderData();
-  const { price, title,img } = orderconfirmdata;
+  const { price, title, img } = orderconfirmdata;
   const navigate = useNavigate();
-  const handelnavigate = () => {
-    navigate("/allservice");
-  };
   const confirmorderfunc = (event) => {
     event.preventDefault();
+    setloading(true);
     const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
@@ -24,13 +22,13 @@ const ConfamOrder = () => {
     const order = {
       name: name,
       email: email,
-      image:img,
+      image: img,
       phone: phone,
       date: date,
       price: price,
       servicename: servicename,
     };
-    console.log(order);
+    // console.log(order);
     fetch("https://car-doctor-server-ue3r.onrender.com/confirm", {
       method: "POST",
       headers: {
@@ -40,16 +38,24 @@ const ConfamOrder = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.insertedId) {
-          swal({
-            title: "Successfully",
+          Swal.fire({
+            title: "Success",
             text: "Your Order is Confirm",
             icon: "success",
-            button: "ok",
-          });
+          }).then(() => navigate("/allservice"));
         }
+      })
+      .catch((err) => {
+        console.error(err);
+        Swal.fire({
+        title: "Error",
+        text: "Something went wrong",
+        icon: "error",
       });
+      })
+      .finally(() => setloading(false));
   };
   return (
     <Reveal>
@@ -129,10 +135,9 @@ const ConfamOrder = () => {
                   </fieldset>
                 </div>
                 <input
-                  onClick={handelnavigate}
                   type="submit"
                   className="btn text-xl hover:text-white text-[#FF3811] hover:border-none hover:bg-[#FF3811] border-[#FF3811] mt-4 w-full"
-                  value="Confirm"
+                  value={loading ? "Confirm" : "Confirm"}
                 />
               </form>
             </div>
