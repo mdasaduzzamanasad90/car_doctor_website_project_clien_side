@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Authcontex } from "../../Provider/AuthProvider";
 import Cardshoping from "../Cardshoping/Cardshoping";
+import axios from "axios";
 
 const Shoping = () => {
   const [loading, setloading] = useState(true);
@@ -10,12 +11,22 @@ const Shoping = () => {
 
   useEffect(() => {
     setloading(true);
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setserviceshoping(data);
-        setloading(false);
-      });
+    // use asiso 
+    axios.get(url, {withCredentials: true})
+    .then(res=>{
+      setserviceshoping(res.data);
+      setloading(false);
+    })
+
+    // or
+    // use normal waye
+    // fetch(url)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setserviceshoping(data);
+    //     setloading(false);
+    //   });
+
   }, [url]);
   if (loading) {
     return (
