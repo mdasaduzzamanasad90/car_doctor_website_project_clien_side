@@ -3,6 +3,7 @@ import google from "../../assets/assets/icons/googleimageicon.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { Authcontex } from "../../Provider/AuthProvider";
+import axios from "axios";
 
 const Login = () => {
   const { login, googleauth } = useContext(Authcontex);
@@ -18,9 +19,19 @@ const Login = () => {
       .then((res) => {
         const user = res.user;
         // user jekhane jete chacsilo login korar por sei state or sei jaigai jabe
-        navigate(location?.state?location.state:"/")
-        console.log(navigate(location?.state?location.state:"/"))
-        console.log(user);
+
+
+       axios.post('http://localhost:3000/jwt',{ email: user.email },{withCredentials:true})
+       .then(res=>{
+        // console.log(res.data)
+        if(res.data.success){
+          navigate(location?.state?location.state:"/")
+        }
+       })
+       
+        // navigate(location?.state?location.state:"/")
+        // console.log(navigate(location?.state?location.state:"/"))
+        // console.log(user);
       })
       .catch((error) => console.log(error));
   };
