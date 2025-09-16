@@ -8,7 +8,7 @@ const Products = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://car-doctor-server-project.web.app/products")
+    fetch("https://car-doctor-server-ue3r.onrender.com/products")
       .then((res) => res.json())
       .then((data) => setproducts(data));
   }, []);

@@ -21,7 +21,7 @@ const Login = () => {
         navigate(location?.state ? location.state : "/");
         //   // user jekhane jete chacsilo login korar por sei state or sei jaigai jabe
 
-        //  axios.post('https://car-doctor-server-project.web.app/jwt',{ email: user.email },{withCredentials:true})
+        //  axios.post('https://car-doctor-server-ue3r.onrender.com/jwt',{ email: user.email },{withCredentials:true})
         //  .then(res=>{
         //   // console.log(res.data)
         //   if(res.data.success){

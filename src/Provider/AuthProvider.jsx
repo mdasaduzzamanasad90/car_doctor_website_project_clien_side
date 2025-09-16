@@ -34,7 +34,7 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     setloading(true);
     axios
-      .post("https://car-doctor-server-project.web.app/logout", {}, { withCredentials: true })
+      .post("https://car-doctor-server-ue3r.onrender.com/logout", {}, { withCredentials: true })
       .then((res) => {
         console.log(res.data);
       })
@@ -59,7 +59,7 @@ const AuthProvider = ({ children }) => {
       if (currentuser) {
         axios
           .post(
-            "https://car-doctor-server-project.web.app/jwt",
+            "https://car-doctor-server-ue3r.onrender.com/jwt",
             { email: currentuser?.email },
             { withCredentials: true }
           )
