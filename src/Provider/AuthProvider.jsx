@@ -1,7 +1,15 @@
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 import app from "../Firebase/Firebase.config";
 import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider } from "firebase/auth";
+import axios from "axios";
 
 export const Authcontex = createContext(null);
 const auth = getAuth(app);
@@ -13,40 +21,61 @@ const AuthProvider = ({ children }) => {
   // sign up
   const creataccount = (email, password) => {
     setloading(true);
-    return createUserWithEmailAndPassword(auth, email, password)
+    return createUserWithEmailAndPassword(auth, email, password);
   };
 
-//   sign in or login
-const login = (email, password) => {
+  //   sign in or login
+  const login = (email, password) => {
     setloading(true);
-    return signInWithEmailAndPassword(auth, email, password)
-};
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
-// logout or sign out
-const logout =()=>{
+  // logout or sign out
+  const logout = () => {
     setloading(true);
-    return signOut(auth)
-}
+    axios
+      .post("https://car-doctor-server-project.web.app/logout", {}, { withCredentials: true })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.r);
+      });
 
-// google login or signup
-const googleauth = ()=>{
-  setloading(true);
-  return signInWithPopup(auth, googleloginprovider)
-}
+    return signOut(auth);
+  };
 
-//   check user ase na ki nai
-useEffect(()=>{
-    const unsubscribe = onAuthStateChanged(auth, currentuser=>{
-        setuser(currentuser);
-        console.log("current user",currentuser);
-        setloading(false);
+  // google login or signup
+  const googleauth = () => {
+    setloading(true);
+    return signInWithPopup(auth, googleloginprovider);
+  };
+
+  //   check user ase na ki nai
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
+      setuser(currentuser);
+      // console.log("current user",currentuser);
+      if (currentuser) {
+        axios
+          .post(
+            "https://car-doctor-server-project.web.app/jwt",
+            { email: currentuser?.email },
+            { withCredentials: true }
+          )
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((error) => console.log(error));
+      }
+      setloading(false);
     });
-    return ()=>{
-        return unsubscribe();
-    }
-},[])
+    return () => {
+      return unsubscribe();
+    };
+  }, []);
 
-    const authinfo = {
+  const authinfo = {
     user,
     loading,
     creataccount,

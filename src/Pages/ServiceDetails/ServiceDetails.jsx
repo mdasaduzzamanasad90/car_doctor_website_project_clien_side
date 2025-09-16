@@ -20,7 +20,7 @@ const ServiceDetails = () => {
 
   useEffect(() => {
     setloading(true);
-    fetch("https://car-doctor-server-ue3r.onrender.com/services")
+    fetch("https://car-doctor-server-project.web.app/services")
       .then((res) => res.json())
       .then((data) => {
         setservices(data);

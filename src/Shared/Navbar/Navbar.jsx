@@ -193,17 +193,21 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{link}</ul>
       </div>
       <div className="navbar-end space-x-3">
+        {/* login or singup korle user image  */}
         {loading ? (
           <span className="loading loading-dots loading-xl text-[#FF3811]"></span>
         ) : user ? (
-          <div>
-            <img src={user.photoURL} alt="" className="rounded-full w-10" />
-          </div>
+          <img
+            src={user?.photoURL}
+            alt="img"
+            className="rounded-full w-10 object-cover"
+          />
         ) : (
-          <div>
-            <Link to={"/shoping"}><FaUser size={30} /></Link>
-          </div>
+          <Link to="/shoping">
+            <FaUser size={30} />
+          </Link>
         )}
+
         <div ref={dropdownRef}>
           <div className="m-1">
             <IoSearchOutline

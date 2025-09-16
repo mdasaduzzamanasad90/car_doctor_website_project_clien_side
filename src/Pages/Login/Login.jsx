@@ -3,7 +3,7 @@ import google from "../../assets/assets/icons/googleimageicon.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { Authcontex } from "../../Provider/AuthProvider";
-import axios from "axios";
+// import axios from "axios";
 
 const Login = () => {
   const { login, googleauth } = useContext(Authcontex);
@@ -16,19 +16,19 @@ const Login = () => {
     const password = form.password.value;
     // console.log(email,password);
     login(email, password)
-      .then((res) => {
-        const user = res.user;
-        // user jekhane jete chacsilo login korar por sei state or sei jaigai jabe
+      .then(() => {
+        // const user = res.user;
+        navigate(location?.state ? location.state : "/");
+        //   // user jekhane jete chacsilo login korar por sei state or sei jaigai jabe
 
+        //  axios.post('https://car-doctor-server-project.web.app/jwt',{ email: user.email },{withCredentials:true})
+        //  .then(res=>{
+        //   // console.log(res.data)
+        //   if(res.data.success){
+        //     navigate(location?.state?location.state:"/")
+        //   }
+        //  })
 
-       axios.post('http://localhost:3000/jwt',{ email: user.email },{withCredentials:true})
-       .then(res=>{
-        // console.log(res.data)
-        if(res.data.success){
-          navigate(location?.state?location.state:"/")
-        }
-       })
-       
         // navigate(location?.state?location.state:"/")
         // console.log(navigate(location?.state?location.state:"/"))
         // console.log(user);
@@ -40,7 +40,7 @@ const Login = () => {
     googleauth()
       .then((res) => {
         const user = res.user;
-        navigate(location?.state?location.state:"/")
+        navigate(location?.state ? location.state : "/");
         console.log(user);
       })
       .catch((error) => console.log(error));
