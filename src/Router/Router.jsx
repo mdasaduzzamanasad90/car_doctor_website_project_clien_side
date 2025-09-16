@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       {
         path: "/allservice",
         element: <ServicePage></ServicePage>,
-        loader: ()=> fetch(`https://car-doctor-server-project.web.app/servicescount`)
+        loader: ()=> fetch(`https://car-doctor-server-ue3r.onrender.com/servicescount`)
       },
       {
         path: "/login",
@@ -37,12 +37,12 @@ const router = createBrowserRouter([
       {
         path: "/serviceDetails/:id",
         element: <PrivateRouter><ServiceDetails></ServiceDetails></PrivateRouter>,
-        loader: ({params})=>fetch(`https://car-doctor-server-project.web.app/services/${params.id}`)
+        loader: ({params})=>fetch(`https://car-doctor-server-ue3r.onrender.com/services/${params.id}`)
       },
       { 
         path: "/confamorder/:id",
         element: <ConfamOrder></ConfamOrder>,
-        loader: ({params})=>fetch(`https://car-doctor-server-project.web.app/services/${params.id}`)
+        loader: ({params})=>fetch(`https://car-doctor-server-ue3r.onrender.com/services/${params.id}`)
       },
       {
         path: "/shoping",

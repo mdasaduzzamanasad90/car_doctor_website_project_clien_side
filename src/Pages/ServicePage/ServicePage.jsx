@@ -34,13 +34,13 @@ const ServicePage = () => {
 
   const [services, setservices] = useState([]);
   const [loading, setloading] = useState(true);
-  // https://car-doctor-server-project.web.app/services
+  // https://car-doctor-server-ue3r.onrender.com/services
 
   useEffect(() => {
     setloading(true);
     axios
       .get(
-        `https://car-doctor-server-project.web.app/services?page=${currenpage}&limit=${itemsperpage}`,
+        `https://car-doctor-server-ue3r.onrender.com/services?page=${currenpage}&limit=${itemsperpage}`,
         { withCredentials: true }
       )
       .then((res) => {
@@ -48,7 +48,7 @@ const ServicePage = () => {
         setservices(res.data);
         setloading(false);
       });
-    // fetch("https://car-doctor-server-project.web.app/services")
+    // fetch("https://car-doctor-server-ue3r.onrender.com/services")
     //   .then((res) => res.json())
     //   .then((data) => {
     //     setservices(data);

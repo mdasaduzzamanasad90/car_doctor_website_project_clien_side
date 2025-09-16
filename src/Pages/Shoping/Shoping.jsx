@@ -8,7 +8,7 @@ const Shoping = () => {
   const { user } = useContext(Authcontex);
   const [serviceshoping, setserviceshoping] = useState([]);
   //
-  const url = `https://car-doctor-server-project.web.app/confirm?email=${user.email}`;
+  const url = `https://car-doctor-server-ue3r.onrender.com/confirm?email=${user.email}`;
   // console.log(user.email)
   useEffect(() => {
     setloading(true);
