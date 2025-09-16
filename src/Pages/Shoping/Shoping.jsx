@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext ,useEffect, useState } from "react";
 import { Authcontex } from "../../Provider/AuthProvider";
 import Cardshoping from "../Cardshoping/Cardshoping";
 import axios from "axios";
@@ -7,8 +7,9 @@ const Shoping = () => {
   const [loading, setloading] = useState(true);
   const { user } = useContext(Authcontex);
   const [serviceshoping, setserviceshoping] = useState([]);
-  const url = `https://car-doctor-server-ue3r.onrender.com/confirm?email=${user.email}`;
-
+  //
+  const url = `https://car-doctor-server-project.web.app/confirm?email=${user.email}`;
+  // console.log(user.email)
   useEffect(() => {
     setloading(true);
     // use asiso 
@@ -16,6 +17,9 @@ const Shoping = () => {
     .then(res=>{
       setserviceshoping(res.data);
       setloading(false);
+    })
+    .catch(err=>{
+      console.log(err.response.data)
     })
 
     // or

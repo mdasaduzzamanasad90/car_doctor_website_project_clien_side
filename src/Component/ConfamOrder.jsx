@@ -29,7 +29,7 @@ const ConfamOrder = () => {
       servicename: servicename,
     };
     // console.log(order);
-    fetch("https://car-doctor-server-ue3r.onrender.com/confirm", {
+    fetch("https://car-doctor-server-project.web.app/confirm", {
       method: "POST",
       headers: {
         "content-type": "application/json",

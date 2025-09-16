@@ -44,7 +44,7 @@ const Addservice = () => {
     };
     // console.log(price);
     // console.log(addservice);
-    fetch("https://car-doctor-server-ue3r.onrender.com/services", {
+    fetch("https://car-doctor-server-project.web.app/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",
