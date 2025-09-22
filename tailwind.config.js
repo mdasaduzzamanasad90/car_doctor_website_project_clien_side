@@ -9,5 +9,11 @@ export default {
     extend: {},
   },
   plugins: [daisyui],
+    daisyui: {
+    themes: [
+      "light",      // default theme
+      "dark",       // dark theme
+    ],
+  }
 }
 
